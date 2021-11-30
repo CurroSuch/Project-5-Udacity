@@ -28,7 +28,7 @@ app.get('/', function (req, res) {
 
 // designates what port the app will listen to for incoming requests
 app.listen(9000, function () {
-    console.log(`App listening on port 9000!`)
+    console.log('App listening on port 9000!')
 })
 
 app.get('/test', function (req, res) {
@@ -38,19 +38,19 @@ app.get('/test', function (req, res) {
 app.post('/sentiment-analysis', async function (req, res){
     const data = req.body;
     const sentence = data.value;
-    const result = await getAnalysis(sentence);
-    
-    console.log(result.irony);
-    console.log(result.subjectivity);
-    
-    res.status(200).json({
-        irony : result.irony,
-        subjectivity : result.subjectivity
-    })
-})
+
+    if (isNaN(sentence)){
+        const result = await getAnalysis(sentence);
+            res.status(200).json({
+                irony : result.irony,
+                subjectivity : result.subjectivity
+    })} else {
+            res.sendStatus(400).json()
+            }
+    });
 
 async function getAnalysis(sentence) {
     let response = await fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&txt=${sentence}&lang=en`)
     let data = await response.json()
     return data;
-}
+};
