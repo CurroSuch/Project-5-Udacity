@@ -9,7 +9,12 @@ function checkForName(inputText) {
     ]
 
     if(names.includes(inputText)) {
-        alert("Welcome, Captain!")
+        try {
+            alert('Welcome, Captain!!')
+        }
+        catch(err){
+            document.getElementById('juanito').innerText = "Error caughting your request!";
+        }
     }
 }
 
