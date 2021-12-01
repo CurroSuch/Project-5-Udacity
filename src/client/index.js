@@ -5,9 +5,6 @@ import { handleSubmit } from './js/formHandler'
 
 const button = document.getElementById('submit-button');
 
-button.addEventListener('click',  handleSubmit);
-
-
 async function postData(){
     let response = await fetch("http://localhost:9000/sentiment-analysis", {
     method: 'POST',
