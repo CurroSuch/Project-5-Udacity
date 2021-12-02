@@ -1,5 +1,3 @@
-import { checkForName } from './nameChecker'
-
 function handleSubmit(event) {
     event.preventDefault()
 
